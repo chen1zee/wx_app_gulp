@@ -1,0 +1,14 @@
+<template></template>
+
+<script>
+import a from '../../lib/runtime.js';
+
+Page({
+    data: {
+
+    }
+})
+</script>
+
+<style lang="less">
+</style>

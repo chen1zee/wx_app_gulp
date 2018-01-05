@@ -1,0 +1,28 @@
+{
+  "name": "wx_app_gulp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chalk": "^2.3.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-watch": "^4.3.11",
+    "less": "^2.7.3",
+    "vinyl": "^2.1.0"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^2.6.3",
+    "gulp-util": "^3.0.8",
+    "pump": "^2.0.0",
+    "through2": "^2.0.3",
+    "wepy": "^1.6.0"
+  }
+}
