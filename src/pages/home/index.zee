@@ -1,9 +1,18 @@
-<template></template>
+<template>
+    <view class="abc">
+        <view></view>
+    </view>
+</template>
 
 <script>
 import a from '../../lib/runtime.js';
 
 Page({
+    config: {
+        pages: [
+            'pages/home/index'
+        ]
+    },
     data: {
 
     }
