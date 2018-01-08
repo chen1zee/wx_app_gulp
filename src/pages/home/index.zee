@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import a from '/src/lib/runtime.js';
+import regeneratorRuntime from '/src/lib/runtime.js'
 
 Page({
     config: {
@@ -15,9 +15,15 @@ Page({
     },
     data: {
 
+    },
+    methods: {
+        async aaa() {
+            console.log(123);
+        }
     }
 })
 </script>
 
 <style lang="less">
+
 </style>
