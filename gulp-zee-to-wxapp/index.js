@@ -1,28 +1,44 @@
 const through = require('through2');
+const breakFile = require('./util/breakFile');
+const makeVinylFile = require('./util/makeVinylFile');
 const colorConsole = require('./util/colorConsole');
-const PumpStreams = require('./PumpStreams');
 
 /**
- * 处理zee文件
- * @param {Object} opt
- * @param {Array} opt.js 数组，处理js的transform流
- * @param {Array} opt.less 数组，处理less的transform流
- * @param {Array} opt.wxml 数组，处理wxml的transform流
- * @param {Array} opt.json 数组，处理json的transform流
+ * @func 处理zee文件
+ * @description 向流推入 js,json,wxml,less 4个chunk
  * */
-function gulpZeeToWxapp(opt) {
+function gulpZeeToWxapp() {
     return through.obj(function(file, enc, cb) {
-        const pumpStream = new PumpStreams(file, opt);
+        const vinylPublicOption = {
+            cwd: file.cwd,
+            base: file.base,
+            pathWithoutExt: file.path.replace(/\.\w+$/, '')
+        };
         try {
-            pumpStream.breakOriginFile();
-            pumpStream.pumpStreams();
-            cb();
+            const afterBreakObj = breakFile(file.contents.toString());
+            this.push(makeVinylFile({
+                vinylPublicOption, ext: 'wxml',
+                contents: Buffer.from(afterBreakObj.wxml)
+            }));
+            this.push(makeVinylFile({
+                vinylPublicOption, ext: 'js',
+                contents: Buffer.from(afterBreakObj.js)
+            }));
+            this.push(makeVinylFile({
+                vinylPublicOption, ext: 'json',
+                contents: Buffer.from(afterBreakObj.json)
+            }));
+            this.push(makeVinylFile({
+                vinylPublicOption, ext: 'less',
+                contents: Buffer.from(afterBreakObj.less)
+            }));
         } catch(e) {
-            colorConsole.error(`${file.path} gulpZeeToWxapp出错`);
+            colorConsole.error(`${file.path} 在 gulpZeeToWxapp 流处理中出错`);
             colorConsole.error(`${e}`);
+        } finally {
             cb();
         }
-    })
+    });
 }
 
 module.exports = gulpZeeToWxapp;

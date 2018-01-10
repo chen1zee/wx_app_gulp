@@ -4,6 +4,11 @@
  * @return {Object} {js, less, wxml, json}
  * */
 function breakFile(content) {
+    // const breakFileObj = {};
+    // let _content = content;
+    // _content = breakWxml.call(breakFileObj, _content);
+    // _content = breakJsJson.call(breakFileObj, _content);
+    // breakLess.call(breakFileObj, _content);
     const breakFileObj = new BreakFileObj(content);
     breakFileObj.break();
     return {

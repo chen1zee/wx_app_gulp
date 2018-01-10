@@ -10,25 +10,8 @@ const prod = process.env.NODE_ENV == 'production';
 
 gulp.task('zee-file', () => (
     gulp.src('src/**/*.zee')
-        .pipe(gulpImportPathChange())
-        .pipe(gulpZeeToWxapp({
-            js: [
-                sourcemaps.init,
-                babel,
-                sourcemaps.write.bind(null, 'sourcemaps'),
-
-                gulp.dest.bind(null, 'dist')
-            ],
-            json: [
-                gulp.dest.bind(null, 'dist')
-            ],
-            wxml: [
-                gulp.dest.bind(null, 'dist')
-            ],
-            less: [
-                gulp.dest.bind(null, 'dist')
-            ]
-        }))
+        .pipe(gulpZeeToWxapp())
+        .pipe(gulp.dest('dist'))
 ));
 
 gulp.task('lib-js', () => (

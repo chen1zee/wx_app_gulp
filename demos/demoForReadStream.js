@@ -1,8 +1,6 @@
 const { Readable } = require('stream');
 const through = require('through2');
 
-let i = 5;
-
 class CreateVinylStream extends Readable {
     constructor(options) {
         super(options);
