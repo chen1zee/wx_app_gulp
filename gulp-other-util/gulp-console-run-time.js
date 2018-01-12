@@ -1,5 +1,6 @@
 const through = require('through2');
 const colorConsole = require('../util/colorConsole');
+const a = require('../util/returnTimeUsed');
 
 /**
  * @var 记录各个task的 beginTimeStamp
@@ -7,6 +8,7 @@ const colorConsole = require('../util/colorConsole');
 const all = {};
 /**
  * @func gulpConsoleRunTime console 任务耗时
+ * @param {String} taskName 任务名称:标识同一任务
  * @param {String} hook 钩子: 'begin':开始 'end':结束
  * */
 function gulpConsoleRunTime(taskName, hook) {
@@ -16,7 +18,7 @@ function gulpConsoleRunTime(taskName, hook) {
             all[taskName] = new Date().getTime();
         } else {
             colorConsole.info(
-                `[${(new Date().getTime() - all[taskName]) / 1000}s] 完成${taskName}
+                `[${returnTimeUsed(all[taskName])}] 完成${taskName}
                 ${file.path}`
             )
         }

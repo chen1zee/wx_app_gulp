@@ -9,7 +9,8 @@ const through = require('through2');
 
 function gulpExtraPass(ext) {
     return through.obj(function(file, enc, cb) {
-
+        this.push(file);
+        cb();
     });
 }
 

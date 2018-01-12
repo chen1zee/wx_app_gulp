@@ -2,6 +2,7 @@ const through = require('through2');
 const breakFile = require('./util/breakFile');
 const makeVinylFile = require('./util/makeVinylFile');
 const colorConsole = require('../util/colorConsole');
+const returnTimeUsed = require('../util/returnTimeUsed');
 
 /**
  * @func 处理zee文件
@@ -25,7 +26,7 @@ function gulpZeeToWxapp() {
                 ));
             }
             colorConsole.info(
-                `[${(new Date().getTime() - beginTimeStamp) / 1000} s] 完成 breakZeeFile
+                `[${returnTimeUsed(beginTimeStamp)}] 完成 breakZeeFile
                 ${file.path}`
             );
         } catch(e) {

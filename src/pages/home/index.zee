@@ -14,11 +14,11 @@ Page({
         ]
     },
     data: {
-
+        aaa: 'asdsad'
     },
     methods: {
         async aaa() {
-            console.log(123);
+            console.log('asdsadsad');
         }
     }
 })
